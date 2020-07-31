@@ -1,19 +1,28 @@
 import React, {Component} from "react";
 
+
+
+const API_KEY= "35e0b76d"
+
 export class SearchForm extends Component{
    
     state={
         inputMovie: ""
     }
-
+    
     handleChange = (e) =>{
         this.setState({ inputMovie: e.target.value })
     }
 
     handleSubmit = (e) =>{
         e.preventDefault()
-        alert(this.state.inputMovie)
 
+        const { inputMovie } = this.state.inputMovie
+        fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputMovie}`)
+        .then(res=>res.json())
+        .then(results =>{
+            const { Search, totalResults } = results 
+        })
     }
     render(){
         return(
