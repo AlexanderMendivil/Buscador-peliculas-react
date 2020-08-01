@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Title } from "./components/title";
 import { SearchForm } from "./components/SearchForm";
+import { MoviesList } from "./components/MoviesList";
 
 import './App.css';
 import "bulma/css/bulma.css"
@@ -13,13 +14,7 @@ import "bulma/css/bulma.css"
       this.setState({ results })
     }
 
-    renderResults ()  {
-      const { results } = this.state
-      return results.map(movie =>{
-      return <p key={movie.imdbID}>{movie.Title}</p>
-      })
-    }
-    
+
   render(){
   return (
         <div className="App">
@@ -29,7 +24,7 @@ import "bulma/css/bulma.css"
           </div>
           {this.state.results.length === 0 
           ? <p>Sin Resultados</p>
-          : this.renderResults()
+          : <MoviesList movies={this.state.results} />
           }
         </div>
     );
