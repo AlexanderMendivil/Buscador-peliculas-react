@@ -6,9 +6,7 @@ const API_KEY= "35e0b76d"
 
 export class SearchForm extends Component{
    
-    state={
-        inputMovie: ""
-    }
+    state={ inputMovie: ""  }
     
     handleChange = (e) =>{
         this.setState({ inputMovie: e.target.value })
@@ -16,12 +14,14 @@ export class SearchForm extends Component{
 
     handleSubmit = (e) =>{
         e.preventDefault()
-
-        const { inputMovie } = this.state.inputMovie
+        const { inputMovie } = this.state
+        
         fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputMovie}`)
         .then(res=>res.json())
         .then(results =>{
             const { Search, totalResults } = results 
+            console.log({ Search, totalResults })
+            this.props.onResults(Search)
         })
     }
     render(){
