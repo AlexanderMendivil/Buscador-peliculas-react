@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
-const API_KEY= "35e0b76d"
+import { ButtonBackToHome } from "../components/ButtonBackToHome";
 
+const API_KEY= "35e0b76d"
 export class Detail extends Component{
 
     static propTypes ={
@@ -24,10 +25,6 @@ export class Detail extends Component{
         })
     }
 
-    goBack(){
-        window.history.back()
-    }
-
     componentDidMount(){
         const { id } = this.props.match.params
         this.fetchMovie({ id })
@@ -42,7 +39,7 @@ export class Detail extends Component{
                 <h3>{ Actors }</h3>
                 <span>{ Metascore }</span>
                 <p>{Plot}</p>
-                <button onClick={this.goBack}>Volver</button>
+                <ButtonBackToHome />
             </div>
         )
     }
